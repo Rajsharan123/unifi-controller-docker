@@ -1,0 +1,27 @@
+---
+version: "2.4"
+services:
+  unifi-controller:
+    image: ghcr.io/linuxserver/unifi-controller
+    container_name: unifi-controller
+    environment:
+      - PUID=1502
+      - PGID=1502
+      - MEM_LIMIT=1024M #optional
+    volumes:
+      - ./data:/config
+    restart: unless-stopped
+    networks:
+      unifi:
+        ipv4_address: <literal static address for controller>
+
+networks:
+  unifi:
+    driver: macvlan
+    driver_opts:
+      parent: <network adapter where controller should go>
+    ipam:
+      config:
+        - subnet: "<literal definition of your network>"
+          ip_range: "<same address value as ipv4_address above>/32"
+          gateway: "<gateway address>"
