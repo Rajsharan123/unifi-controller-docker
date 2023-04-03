@@ -5,9 +5,9 @@ services:
     image: ghcr.io/linuxserver/unifi-controller
     container_name: unifi-controller
     environment:
-      - PUID=1502
-      - PGID=1502
-      - MEM_LIMIT=1024M #optional
+      - PUID=1000
+      - PGID=1000
+      - MEM_LIMIT=1024 #optional
     volumes:
       - /mnt/sharedata/unifi/data:/config
     restart: unless-stopped
