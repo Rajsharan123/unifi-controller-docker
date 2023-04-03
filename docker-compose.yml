@@ -9,19 +9,19 @@ services:
       - PGID=1502
       - MEM_LIMIT=1024M #optional
     volumes:
-      - ./data:/config
+      - mnt/sharedata/unifi/data:/config
     restart: unless-stopped
     networks:
       unifi:
-        ipv4_address: <literal static address for controller>
+        ipv4_address: 10.10.1.28
 
 networks:
   unifi:
     driver: macvlan
     driver_opts:
-      parent: <network adapter where controller should go>
+      parent: eth1
     ipam:
       config:
-        - subnet: "<literal definition of your network>"
-          ip_range: "<same address value as ipv4_address above>/32"
-          gateway: "<gateway address>"
+        - subnet: "10.10.1.0/26"
+          ip_range: "10.10.1.28/32"
+          gateway: "10.10.1.1"
