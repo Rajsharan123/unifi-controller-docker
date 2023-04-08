@@ -7,7 +7,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MEM_LIMIT=1024 #optional
+      #- MEM_LIMIT=1024 #optional
     volumes:
       - /mnt/sharedata/unifi/data:/config
     restart: unless-stopped
